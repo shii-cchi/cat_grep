@@ -12,12 +12,14 @@ void grep(int argc, char *argv[]) {
     } else {
       int index_file = 0, index_pattern = 0, count_file = 0;
       if (choice_flag == pattern) {
-        index_file = 2, index_pattern = 1, choice_flag = e, count_file = argc - 2;
+        index_file = 2, index_pattern = 1, choice_flag = e,
+        count_file = argc - 2;
       } else {
         index_file = 3, index_pattern = 2, count_file = argc - 3;
       }
       while (index_file < argc) {
-        make_grep(argv[index_file], argv[index_pattern], choice_flag, count_file);
+        make_grep(argv[index_file], argv[index_pattern], choice_flag,
+                  count_file);
         index_file++;
       }
     }
@@ -68,8 +70,8 @@ void make_grep(char *file_name, char *str_template, enum flag_type choice_flag,
   }
 }
 
-void regex_and_flag(FILE *file, char *file_name, char *str_template, enum flag_type choice_flag,
-          int count_file) {
+void regex_and_flag(FILE *file, char *file_name, char *str_template,
+                    enum flag_type choice_flag, int count_file) {
   regex_t regex;
   size_t len = 0;
   int cflags, status, count_symb = 0, count_str = 1;
@@ -107,8 +109,8 @@ int make_flag(enum flag_type choice_flag, int *cflags) {
   return *cflags;
 }
 
-int output(char *file_name, char *tmp_str, enum flag_type choice_flag, int status,
-           int count_str, int count_file) {
+int output(char *file_name, char *tmp_str, enum flag_type choice_flag,
+           int status, int count_str, int count_file) {
   if (status == 0) {
     if (choice_flag == l && count_str == 1) {
       count_str++;
@@ -135,8 +137,9 @@ void make_flag_l(char *file_name) {
   }
 }
 
-void make_flag_e_i_v_n(char *file_name, char *tmp_str, enum flag_type choice_flag,
-                       int count_str, int count_file) {
+void make_flag_e_i_v_n(char *file_name, char *tmp_str,
+                       enum flag_type choice_flag, int count_str,
+                       int count_file) {
   if (count_file > 1) {
     printf("%s:", file_name);
   }
